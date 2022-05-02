@@ -1,6 +1,84 @@
 <mat-card>
   <div>
-    <h3>Datos Personales</h3>
-    <p>Nombre y Apellidos: {{ aspirante.nombre }} {{ aspirante.apellidos }}</p>
+    <h2>Datos Personales</h2>
+    <table>
+      <tr>
+        <td>Nombre y Apellidos: {{ aspirante.nombre }} {{ aspirante.apellidos }}</td>
+        <td>Alias: {{ aspirante.alias }}</td>
+        <td>Carné de Identidad: {{ aspirante.ci }}</td>
+      </tr>
+      <tr>
+        <td>Sexo: {{ aspirante.sexo }}</td>
+        <td>Edad: {{ aspirante.edad }}</td>
+        <td>Correo Electrónico: {{ aspirante.correo }}</td>
+      </tr>
+      <tr>
+        <td>Provincia: {{ aspirante.provincia }}</td>
+        <td>Municipio: {{ aspirante.municipio }}</td>
+        <td>Dirección: {{ aspirante.direccion }}</td>
+      </tr>
+      <tr>
+        <td>Teléfono(s): {{ aspirante.telefono }}</td>
+        <td>Color de la Piel: {{ aspirante.raza }}</td>
+        <td>Estado Civil: {{ aspirante.estado_civil }}</td>
+      </tr>
+      <tr>
+        <td>Cantidad de Hijos: {{ aspirante.hijos }}</td>
+        <td>Estatura (Metros): {{ aspirante.estatura }}</td>
+        <td>Peso (Kg): {{ aspirante.peso }}</td>
+      </tr>
+      <tr>
+        <td *ngIf="aspirante.licencia == false">Licencia	de	Conducción: No</td>
+        <td *ngIf="aspirante.licencia == true">Licencia	de	Conducción: Si</td>
+        <td>Categoría	de	Licencia: {{ aspirante.categoria_licencia }}</td>
+        <td>Organizaciones	a	las	que	Pertenece: {{ aspirante.militancia }}</td>
+      </tr>
+    </table>
+  </div>
+</mat-card>
+<mat-card>
+  <div>
+    <h2>Datos Profesionales</h2>
+    <table>
+      <tr>
+        <td>Nivel de Escolaridad: {{ aspirante.nivel_escolaridad }}</td>
+        <td>Título de Graduado: {{ aspirante.titulo_graduado }}</td>
+        <td>Experiencia	Laboral	(Años): {{ aspirante.experiencia_laboral }}</td>
+      </tr>
+      <tr>
+        <td>Otros	Estudios Realizados: {{ aspirante.otros_estudios }}</td>
+      </tr>
+    </table>
+  </div>
+</mat-card>
+<mat-card>
+  <div>
+    <h2>Datos Laborales</h2>
+    <table>
+      <tr>
+        <td>Situación	Laboral: {{ aspirante.situacion_laboral }}</td>
+        <td>Centro de Trabajo: {{ aspirante.centro_trabajo }}</td>
+        <td>Organismo: {{ aspirante.organismo_trabajo}}</td>
+        <td>Cargo: {{ aspirante.cargo_trabajo }}</td>
+      </tr>
+      <tr>
+        <td>Categoría	Ocupacional: {{ aspirante.categoria_trabajo }}</td>
+        <td>Teléfono(s): {{ aspirante.telefono_trabajo }}</td>
+        <td>Dirección: {{ aspirante.direccion_trabajo }}</td>
+      </tr>
+      <tr>
+        <td>Otros	Oficios	que	Domina: {{ aspirante.otros_oficios }}</td>
+      </tr>
+    </table>
+  </div>
+</mat-card>
+<mat-card>
+  <div>
+    <h2>Trayectoria Laboral</h2>
+    <table>
+      <tr>
+        <td>{{ aspirante.trayectoria_laboral }}</td>
+      </tr>
+    </table>
   </div>
 </mat-card>

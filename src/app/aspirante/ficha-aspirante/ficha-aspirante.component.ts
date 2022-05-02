@@ -14,51 +14,33 @@ export class FichaAspiranteComponent implements OnInit {
 
   constructor(public aspiranteService: AspiranteService, public route: ActivatedRoute) {}
 
+  aspirantes: Aspirante[] = [];
+  private aspiranteSub!: Subscription;
+
   aspirante!: Aspirante;
-  private idAspirante: string = "";
+  private idAspirante: any;
+
+  trayectoria: any[] = [];
+
+  displayedColumns: string[] = ['actividad', 'centro', 'desde', 'hasta'];
 
   ngOnInit() {
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if(paramMap.has('idAspirante')) {
-        this.idAspirante = paramMap.get("idAspirante");
-        this.aspiranteService.getAspirante(this.idAspirante).subscribe(aspiranteData => {
-          this.aspirante = {
-            id: aspiranteData._id,
-            nombre: aspiranteData.nombre,
-            apellidos: aspiranteData.apellidos,
-            alias: aspiranteData.alias,
-            ci: aspiranteData.ci,
-            edad: aspiranteData.edad,
-            sexo: aspiranteData.sexo,
-            provincia: aspiranteData.provincia,
-            municipio: aspiranteData.municipio,
-            direccion: aspiranteData.direccion,
-            correo: aspiranteData.correo,
-            telefono: aspiranteData.telefono,
-            color_piel: aspiranteData.color_piel,
-            estatura: aspiranteData.estatura,
-            peso: aspiranteData.peso,
-            estado_civil: aspiranteData.estado_civil,
-            hijos: aspiranteData.hijos,
-            licencia: aspiranteData.licencia,
-            categoria_licencia: aspiranteData.categoria_licencia,
-            militancia: aspiranteData.militancia,
-            nivel_escolaridad: aspiranteData.nivel_escolaridad,
-            titulo_graduado: aspiranteData.titulo_graduado,
-            experiencia_laboral: aspiranteData.experiencia_laboral,
-            otros_estudios: aspiranteData.otros_estudios,
-            trayectoria_laboral: aspiranteData.trayectoria_laboral,
-            situacion_laboral: aspiranteData.situacion_laboral,
-            centro_trabajo: aspiranteData.centro_trabajo,
-            organismo_trabajo: aspiranteData.organismo_trabajo,
-            cargo_trabajo: aspiranteData.cargo_trabajo,
-            categoria_trabajo: aspiranteData.categoria_trabajo,
-            direccion_trabajo: aspiranteData.direccion_trabajo,
-            telefono_trabajo: aspiranteData.telefono_trabajo,
-            otros_oficios: aspiranteData.otros_oficios
-          }
+    this.aspiranteService.getAspirantes();
+    this.aspiranteSub = this.aspiranteService
+      .getAspirantesUpdateListener()
+      .subscribe((aspirantes: Aspirante[]) => {
+        this.aspirantes = aspirantes;
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+          if(paramMap.has('idAspirante')) {
+            this.idAspirante = paramMap.get("idAspirante");
+            for (let i = 0; i < this.aspirantes.length; i++) {
+              if (this.aspirantes[i].id == this.idAspirante) {
+                this.aspirante = this.aspirantes[i];
+                // this.trayectoria = this.aspirantes[i].trayectoria_laboral;
+              }
+            }
+          };
         });
-      };
-    });
+      });
   }
 }

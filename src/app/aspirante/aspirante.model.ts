@@ -11,7 +11,7 @@ export interface Aspirante {
   direccion: string;
   correo: string;
   telefono: string;
-  color_piel: string;
+  raza: string;
   estatura: number;
   peso: number;
   estado_civil: string;

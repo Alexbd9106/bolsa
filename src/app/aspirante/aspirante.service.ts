@@ -34,7 +34,7 @@ export class AspiranteService {
               direccion: any;
               correo: any;
               telefono: any;
-              color_piel: any;
+              raza: any;
               estatura: any;
               peso: any;
               estado_civil: any;
@@ -69,7 +69,7 @@ export class AspiranteService {
                 direccion: aspirante.direccion,
                 correo: aspirante.correo,
                 telefono: aspirante.telefono,
-                color_piel: aspirante.color_piel,
+                raza: aspirante.raza,
                 estatura: aspirante.estatura,
                 peso: aspirante.peso,
                 estado_civil: aspirante.estado_civil,
@@ -99,12 +99,6 @@ export class AspiranteService {
         this.aspirantes = aspirantes;
         this.aspirantesUpdated.next([...this.aspirantes]);
       });
-  }
-
-  getAspirante(id: string) {
-    return this.http.get<{_id: string, nombre: string, apellidos: string, alias: string, ci: string, edad: number, sexo: string, provincia: string, municipio: string, direccion: string, correo: string, telefono: string, color_piel: string, estatura: number, peso: number, estado_civil: string, hijos: number, licencia: boolean, categoria_licencia: string, militancia: string, nivel_escolaridad: string, titulo_graduado: string, experiencia_laboral: number, otros_estudios: string, trayectoria_laboral: string, situacion_laboral: string, centro_trabajo: string, organismo_trabajo: string, cargo_trabajo: string, categoria_trabajo: string, direccion_trabajo: string, telefono_trabajo: string, otros_oficios: string}>(
-      this.servidor + "/aspirante/" + id
-    );
   }
 
   getAspirantesUpdateListener() {
