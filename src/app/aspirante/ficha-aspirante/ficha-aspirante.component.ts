@@ -20,10 +20,7 @@ export class FichaAspiranteComponent implements OnInit {
   aspirante!: Aspirante;
   private idAspirante: any;
 
-<<<<<<< HEAD
-=======
   trayectorias: any[] = [];
->>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
   trayectoria: any[] = [];
 
   displayedColumns: string[] = ['actividad', 'centro', 'desde', 'hasta'];
@@ -40,11 +37,6 @@ export class FichaAspiranteComponent implements OnInit {
             for (let i = 0; i < this.aspirantes.length; i++) {
               if (this.aspirantes[i].id == this.idAspirante) {
                 this.aspirante = this.aspirantes[i];
-<<<<<<< HEAD
-                // this.trayectoria = this.aspirantes[i].trayectoria_laboral;
-              }
-            }
-=======
               }
             }
 
@@ -60,7 +52,6 @@ export class FichaAspiranteComponent implements OnInit {
               this.trayectoria.push({ ...aux});
               this.trayectorias.splice(0,4);
             }
->>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
           };
         });
       });

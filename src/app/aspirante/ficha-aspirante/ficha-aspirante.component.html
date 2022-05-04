@@ -1,4 +1,5 @@
 <mat-card>
+  <button routerLink="/" mat-raised-button color="primary">Volver</button>
   <div>
     <h2>Datos Personales</h2>
     <table>
@@ -6,18 +7,16 @@
         <td>Nombre y Apellidos: {{ aspirante.nombre }} {{ aspirante.apellidos }}</td>
         <td>Alias: {{ aspirante.alias }}</td>
         <td>Carné de Identidad: {{ aspirante.ci }}</td>
+        <td>Sexo: {{ aspirante.sexo }}</td>
       </tr>
       <tr>
-        <td>Sexo: {{ aspirante.sexo }}</td>
         <td>Edad: {{ aspirante.edad }}</td>
         <td>Correo Electrónico: {{ aspirante.correo }}</td>
-      </tr>
-      <tr>
         <td>Provincia: {{ aspirante.provincia }}</td>
         <td>Municipio: {{ aspirante.municipio }}</td>
-        <td>Dirección: {{ aspirante.direccion }}</td>
       </tr>
       <tr>
+        <td>Dirección: {{ aspirante.direccion }}</td>
         <td>Teléfono(s): {{ aspirante.telefono }}</td>
         <td>Color de la Piel: {{ aspirante.raza }}</td>
         <td>Estado Civil: {{ aspirante.estado_civil }}</td>
@@ -26,21 +25,15 @@
         <td>Cantidad de Hijos: {{ aspirante.hijos }}</td>
         <td>Estatura (Metros): {{ aspirante.estatura }}</td>
         <td>Peso (Kg): {{ aspirante.peso }}</td>
-      </tr>
-      <tr>
         <td *ngIf="aspirante.licencia == false">Licencia	de	Conducción: No</td>
         <td *ngIf="aspirante.licencia == true">Licencia	de	Conducción: Si</td>
-<<<<<<< HEAD
-        <td>Categoría	de	Licencia: {{ aspirante.categoria_licencia }}</td>
-=======
+      </tr>
+      <tr>
         <td>Categoría	de Licencia: {{ aspirante.categoria_licencia }}</td>
->>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
         <td>Organizaciones	a	las	que	Pertenece: {{ aspirante.militancia }}</td>
       </tr>
     </table>
   </div>
-</mat-card>
-<mat-card>
   <div>
     <h2>Datos Profesionales</h2>
     <table>
@@ -54,8 +47,6 @@
       </tr>
     </table>
   </div>
-</mat-card>
-<mat-card>
   <div>
     <h2>Datos Laborales</h2>
     <table>
@@ -75,15 +66,10 @@
       </tr>
     </table>
   </div>
-</mat-card>
-<mat-card>
   <div>
     <h2>Trayectoria Laboral</h2>
     <table>
       <tr>
-<<<<<<< HEAD
-        <td>{{ aspirante.trayectoria_laboral }}</td>
-=======
         <th>Actividad Desempeñada</th>
         <th>Centro de Trabajo</th>
         <th>Desde</th>
@@ -94,7 +80,6 @@
         <td class="trayectoria">{{ tray[1] }}</td>
         <td class="trayectoria">{{ tray[2] }}</td>
         <td class="trayectoria">{{ tray[3] }}</td>
->>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
       </tr>
     </table>
   </div>

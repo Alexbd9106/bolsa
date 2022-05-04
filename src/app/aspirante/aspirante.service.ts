@@ -11,11 +11,7 @@ export class AspiranteService {
   private aspirantes: Aspirante[] = [];
   private aspirantesUpdated = new Subject<Aspirante[]>();
 
-<<<<<<< HEAD
-  private servidor: string = 'http://192.168.10.10:3000';
-=======
   private servidor: string = 'http://localhost:3000';
->>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
 
   constructor(private http: HttpClient, private router: Router) {}
 
