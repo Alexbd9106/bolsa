@@ -1,0 +1,17 @@
+h2 {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  width: auto;
+  padding-top: 1%;
+}
+
+.trayectoria {
+  text-align: center;
+  width: 25%;
+}
