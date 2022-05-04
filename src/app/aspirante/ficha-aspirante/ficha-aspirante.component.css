@@ -8,5 +8,14 @@ table {
 
 td {
   width: auto;
+<<<<<<< HEAD
   padding-bottom: 1%;
+=======
+  padding-top: 1%;
+}
+
+.trayectoria {
+  text-align: center;
+  width: 25%;
+>>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
 }

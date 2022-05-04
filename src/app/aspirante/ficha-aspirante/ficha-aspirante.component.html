@@ -30,7 +30,11 @@
       <tr>
         <td *ngIf="aspirante.licencia == false">Licencia	de	Conducción: No</td>
         <td *ngIf="aspirante.licencia == true">Licencia	de	Conducción: Si</td>
+<<<<<<< HEAD
         <td>Categoría	de	Licencia: {{ aspirante.categoria_licencia }}</td>
+=======
+        <td>Categoría	de Licencia: {{ aspirante.categoria_licencia }}</td>
+>>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
         <td>Organizaciones	a	las	que	Pertenece: {{ aspirante.militancia }}</td>
       </tr>
     </table>
@@ -77,7 +81,20 @@
     <h2>Trayectoria Laboral</h2>
     <table>
       <tr>
+<<<<<<< HEAD
         <td>{{ aspirante.trayectoria_laboral }}</td>
+=======
+        <th>Actividad Desempeñada</th>
+        <th>Centro de Trabajo</th>
+        <th>Desde</th>
+        <th>Hasta</th>
+      </tr>
+      <tr *ngFor="let tray of trayectoria">
+        <td class="trayectoria">{{ tray[0] }}</td>
+        <td class="trayectoria">{{ tray[1] }}</td>
+        <td class="trayectoria">{{ tray[2] }}</td>
+        <td class="trayectoria">{{ tray[3] }}</td>
+>>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
       </tr>
     </table>
   </div>

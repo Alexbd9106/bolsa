@@ -20,6 +20,10 @@ export class FichaAspiranteComponent implements OnInit {
   aspirante!: Aspirante;
   private idAspirante: any;
 
+<<<<<<< HEAD
+=======
+  trayectorias: any[] = [];
+>>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
   trayectoria: any[] = [];
 
   displayedColumns: string[] = ['actividad', 'centro', 'desde', 'hasta'];
@@ -36,9 +40,27 @@ export class FichaAspiranteComponent implements OnInit {
             for (let i = 0; i < this.aspirantes.length; i++) {
               if (this.aspirantes[i].id == this.idAspirante) {
                 this.aspirante = this.aspirantes[i];
+<<<<<<< HEAD
                 // this.trayectoria = this.aspirantes[i].trayectoria_laboral;
               }
             }
+=======
+              }
+            }
+
+            for (let i = 0; i < this.aspirante.trayectoria_laboral.length; i++) {
+              for (let j = 0; j < this.aspirante.trayectoria_laboral[i].length; j++) {
+                this.trayectorias.push(this.aspirante.trayectoria_laboral[i][j]);
+              }
+            }
+
+            for (let i = 0; i < this.trayectorias.length; i++) {
+              let aux: any [] = [];
+              aux.push(this.trayectorias[0], this.trayectorias[1], this.trayectorias[2], this.trayectorias[3]);
+              this.trayectoria.push({ ...aux});
+              this.trayectorias.splice(0,4);
+            }
+>>>>>>> 99920eed48f35fbacabbd5b5d29ccca65c62b39b
           };
         });
       });
