@@ -55,6 +55,7 @@ export class AspiranteService {
               direccion_trabajo: any;
               telefono_trabajo: any;
               otros_oficios: any;
+              estado: any;
             }) => {
               return {
                 id: aspirante._id,
@@ -90,6 +91,7 @@ export class AspiranteService {
                 direccion_trabajo: aspirante.direccion_trabajo,
                 telefono_trabajo: aspirante.telefono_trabajo,
                 otros_oficios: aspirante.otros_oficios,
+                estado: aspirante.estado
               };
             }
           );
