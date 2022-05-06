@@ -23,8 +23,6 @@ export class FichaAspiranteComponent implements OnInit {
   trayectorias: any[] = [];
   trayectoria: any[] = [];
 
-  displayedColumns: string[] = ['actividad', 'centro', 'desde', 'hasta'];
-
   ngOnInit() {
     this.aspiranteService.getAspirantes();
     this.aspiranteSub = this.aspiranteService
@@ -49,7 +47,7 @@ export class FichaAspiranteComponent implements OnInit {
             for (let i = 0; i < this.trayectorias.length; i++) {
               let aux: any [] = [];
               aux.push(this.trayectorias[0], this.trayectorias[1], this.trayectorias[2], this.trayectorias[3]);
-              this.trayectoria.push({ ...aux});
+              this.trayectoria.push({...aux});
               this.trayectorias.splice(0,4);
             }
           };
