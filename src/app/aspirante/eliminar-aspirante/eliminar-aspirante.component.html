@@ -1,0 +1,7 @@
+<form [formGroup]="form" (submit)="onDeleteAspirante()" >
+  <mat-form-field>
+    <textarea matInput required rows="5" formControlName="causa_eliminacion" placeholder="Motivos por los cuales se considera que el aspirante debe ser eliminado"></textarea>
+    <mat-error *ngIf="form.get('causa_eliminacion')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <button [disabled]="form.invalid" mat-raised-button color="warn" type="submit" mat-dialog-close routerLink="/eliminados">Eliminar Aspirante</button>
+</form>

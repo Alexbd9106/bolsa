@@ -22,19 +22,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 
 import { FichaAspiranteComponent } from './aspirante/ficha-aspirante/ficha-aspirante.component';
-import { Eliminado, ListarAspiranteComponent, NoApto } from './aspirante/listar-aspirante/listar-aspirante.component';
+import { ListarAspiranteComponent, EliminarAspiranteComponent, AspiranteNoAptoComponent } from './aspirante/listar-aspirante/listar-aspirante.component';
+import { ListarEliminadoComponent } from './aspirante/listar-eliminado/listar-eliminado.component';
+import { ListarNoAptoComponent } from './aspirante/listar-noapto/listar-noapto.component';
 
 import { ListarCandidatoComponent } from './candidato/listar-candidato/listar-candidato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Eliminado,
     HeaderComponent,
+    EliminarAspiranteComponent,
     FichaAspiranteComponent,
+    AspiranteNoAptoComponent,
     ListarAspiranteComponent,
-    ListarCandidatoComponent,
-    NoApto
+    ListarEliminadoComponent,
+    ListarNoAptoComponent,
+    ListarCandidatoComponent
   ],
   imports: [
     AppRoutingModule,
