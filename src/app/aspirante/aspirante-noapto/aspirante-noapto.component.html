@@ -3,5 +3,5 @@
     <textarea matInput required rows="5" formControlName="causa_no_apto" placeholder="Motivos por los cuales se considera que el aspirante debe ser No Apto"></textarea>
     <mat-error *ngIf="form.get('causa_no_apto')">{{ getErrorMessage() }}</mat-error>
   </mat-form-field>
-  <button [disabled]="form.invalid" mat-raised-button color="accent" type="submit" mat-dialog-close routerLink="/no_aptos">Pasar a No Apto</button>
+  <button [disabled]="form.invalid" mat-raised-button color="accent" type="submit" mat-dialog-close routerLink="/no-aptos">Pasar a No Apto</button>
 </form>

@@ -58,5 +58,10 @@ export interface Aspirante {
   antecedentes: boolean;
   fecha_antecedentes: string;
   evaluacion_psicologica: string;
-  comite_admision: string
+  comite_admision: string;
+  mixta: string;
+  cargo_mixta: string;
+  fecha_mixta: string;
+  causa_devolucion: string;
+  fecha_devolucion: string;
 }

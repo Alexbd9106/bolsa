@@ -1,0 +1,17 @@
+<form [formGroup]="form" (submit)="onEmplearMixta()">
+  <mat-form-field>
+    <mat-select required [ngModel]="aspirante.mixta" formControlName="mixta" placeholder="Empresa Mixta en la que se Emplea al Candidato">
+      <mat-option *ngFor="let mixta of mixtas" [value]="mixta.nombre">{{ mixta.nombre }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('mixta')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" [ngModel]="aspirante.cargo_mixta" formControlName="cargo_mixta" placeholder="Cargo que va a Ocupar el Candidato"/>
+    <mat-error *ngIf="form.get('cargo_mixta')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="date" [ngModel]="aspirante.fecha_mixta" formControlName="fecha_mixta" placeholder="Fecha en la que se Emplea al candidato"/>
+    <mat-error *ngIf="form.get('fecha_mixta')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" mat-dialog-close>Guardar</button>
+</form>

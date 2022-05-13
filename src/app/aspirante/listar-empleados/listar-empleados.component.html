@@ -28,9 +28,26 @@
     <td mat-cell *matCellDef="let aspirante">{{ aspirante.estado }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="causa_no_apto">
-    <th mat-header-cell *matHeaderCellDef>Causa de Pasar a No Apto</th>
-    <td mat-cell *matCellDef="let aspirante">{{ aspirante.causa_no_apto }}</td>
+  <ng-container matColumnDef="mixta">
+    <th mat-header-cell *matHeaderCellDef>Empresa Mixta</th>
+    <td mat-cell *matCellDef="let aspirante">{{ aspirante.mixta }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="cargo_mixta">
+    <th mat-header-cell *matHeaderCellDef>Cargo que Ocupa en la Empresa Mixta</th>
+    <td mat-cell *matCellDef="let aspirante">{{ aspirante.cargo_mixta }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fecha_mixta">
+    <th mat-header-cell *matHeaderCellDef>Fecha en la que se Empleó en la Empresa Mixta</th>
+    <td mat-cell *matCellDef="let aspirante">{{ aspirante.fecha_mixta }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let aspirante">
+      <button mat-button color="primary" (click)="openDialogDevolverMixta(aspirante.id)">Devolver Candidato</button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

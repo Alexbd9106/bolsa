@@ -114,7 +114,12 @@ export class ListarAspiranteComponent implements OnInit, OnDestroy {
       this.aspirante.antecedentes,
       this.aspirante.fecha_antecedentes,
       this.aspirante.evaluacion_psicologica,
-      this.aspirante.comite_admision
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
     );
   }
 
@@ -230,7 +235,12 @@ export class AspiranteNoAptoComponent implements OnInit {
       this.aspirante.antecedentes,
       this.aspirante.fecha_antecedentes,
       this.aspirante.evaluacion_psicologica,
-      this.aspirante.comite_admision
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
     );
   }
 }
@@ -336,7 +346,12 @@ export class EliminarAspiranteComponent implements OnInit {
       this.aspirante.antecedentes,
       this.aspirante.fecha_antecedentes,
       this.aspirante.evaluacion_psicologica,
-      this.aspirante.comite_admision
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
     );
   }
 }

@@ -1,0 +1,11 @@
+<form [formGroup]="form" (submit)="onEmplearMixta()">
+    <mat-form-field>
+    <input matInput type="date" [ngModel]="aspirante.fecha_devolucion" formControlName="fecha_devolucion" placeholder="Fecha en la que se Devuelve el Candidato"/>
+    <mat-error *ngIf="form.get('fecha_devolucion')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput required rows="5" formControlName="causa_devolucion" placeholder="Motivos por los Cuales se Devuelve el Candidato"></textarea>
+    <mat-error *ngIf="form.get('causa_devolucion')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" mat-dialog-close>Guardar</button>
+</form>

@@ -28,11 +28,15 @@ export class ListarCandidatoComponent implements OnInit {
 
   constructor(
     public aspiranteService: AspiranteService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public route: ActivatedRoute,
+    private router: Router
   ) {}
 
   aspirantes: Aspirante[] = [];
   private aspiranteSub!: Subscription;
+
+  aspirante!: Aspirante;
 
   displayedColumns: string[] = ['nombre', 'ci', 'edad', 'sexo', 'estado', 'acciones'];
   expandedCandidato!: Aspirante | null;
@@ -59,12 +63,104 @@ export class ListarCandidatoComponent implements OnInit {
 
   openDialogProcesoInvestigativo(id: any) {
     idAspirante = id;
-    const dialogRef = this.dialog.open(ProcesoInvestigativo);
+    const dialogRef = this.dialog.open(ProcesoInvestigativoComponent);
   }
 
   openDialogDocumentos(id: any) {
     idAspirante = id;
-    const dialogRef = this.dialog.open(Documentos);
+    const dialogRef = this.dialog.open(DocumentosComponent);
+  }
+
+  openDialogEvaluacionPsicologica(id: any) {
+    idAspirante = id;
+    const dialogRef = this.dialog.open(EvaluacionPsicologicaComponent);
+  }
+
+  openDialogComiteAdmision(id: any) {
+    idAspirante = id;
+    const dialogRef = this.dialog.open(ComiteAdmisionComponent);
+  }
+
+  pasarBolsaDisponible(id: any) {
+    for (let i = 0; i < this.aspirantes.length; i++) {
+      if (this.aspirantes[i].id == id) {
+        this.aspirante = this.aspirantes[i];
+      }
+    }
+
+    this.aspiranteService.updateCandidato(
+      id,
+      this.aspirante.nombre,
+      this.aspirante.apellidos,
+      this.aspirante.alias,
+      this.aspirante.ci,
+      this.aspirante.edad,
+      this.aspirante.sexo,
+      this.aspirante.provincia,
+      this.aspirante.municipio,
+      this.aspirante.direccion,
+      this.aspirante.correo,
+      this.aspirante.telefono,
+      this.aspirante.raza,
+      this.aspirante.estatura,
+      this.aspirante.peso,
+      this.aspirante.estado_civil,
+      this.aspirante.hijos,
+      this.aspirante.licencia,
+      this.aspirante.categoria_licencia,
+      this.aspirante.militancia,
+      this.aspirante.nivel_escolaridad,
+      this.aspirante.titulo_graduado,
+      this.aspirante.experiencia_laboral,
+      this.aspirante.otros_estudios,
+      this.aspirante.trayectoria_laboral,
+      this.aspirante.situacion_laboral,
+      this.aspirante.centro_trabajo,
+      this.aspirante.organismo_trabajo,
+      this.aspirante.cargo_trabajo,
+      this.aspirante.categoria_trabajo,
+      this.aspirante.direccion_trabajo,
+      this.aspirante.telefono_trabajo,
+      this.aspirante.otros_oficios,
+      "Candidato Disponible en Bolsa",
+      this.aspirante.causa_eliminacion,
+      this.aspirante.causa_no_apto,
+      this.aspirante.preseleccion,
+      this.aspirante.fecha_inicio_proceso_investigativo,
+      this.aspirante.fecha_fin_proceso_investigativo,
+      this.aspirante.resultado_proceso_investigativo,
+      this.aspirante.curriculum_vitae,
+      this.aspirante.fecha_curriculum_vitae,
+      this.aspirante.autobiografia,
+      this.aspirante.fecha_autobiografia,
+      this.aspirante.titulo,
+      this.aspirante.fecha_titulo,
+      this.aspirante.chequeo_medico,
+      this.aspirante.fecha_chequeo_medico,
+      this.aspirante.avales_cdr,
+      this.aspirante.fecha_avales_cdr,
+      this.aspirante.avales_centro_trabajo,
+      this.aspirante.fecha_avales_centro_trabajo,
+      this.aspirante.fotos,
+      this.aspirante.fecha_fotos,
+      this.aspirante.anexo1,
+      this.aspirante.fecha_anexo1,
+      this.aspirante.antecedentes,
+      this.aspirante.fecha_antecedentes,
+      this.aspirante.evaluacion_psicologica,
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
+    );
+    this.router.navigate(["/"]);
+  }
+
+  openDialogNoApto(id: any) {
+    idAspirante = id;
+    const dialogRef = this.dialog.open(CandidatoNoAptoComponent);
   }
 
 }
@@ -170,7 +266,12 @@ export class PreseleccionComponent implements OnInit {
       this.aspirante.antecedentes,
       this.aspirante.fecha_antecedentes,
       this.aspirante.evaluacion_psicologica,
-      this.aspirante.comite_admision
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
     );
     this.router.navigate(["/"]);
   }
@@ -182,7 +283,7 @@ export class PreseleccionComponent implements OnInit {
   styleUrls: ['../procesoinvestigativo/procesoinvestigativo.component.css'],
 })
 
-export class ProcesoInvestigativo implements OnInit {
+export class ProcesoInvestigativoComponent implements OnInit {
 
   constructor(public aspiranteService: AspiranteService, public route: ActivatedRoute, private router: Router) { }
 
@@ -198,7 +299,7 @@ export class ProcesoInvestigativo implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      fecha_inicio_proceso_investigativo: new FormControl(""),
+      fecha_inicio_proceso_investigativo: new FormControl(null, { validators: [Validators.required] }),
       fecha_fin_proceso_investigativo: new FormControl(""),
       resultado_proceso_investigativo: new FormControl(""),
     });
@@ -279,7 +380,12 @@ export class ProcesoInvestigativo implements OnInit {
       this.aspirante.antecedentes,
       this.aspirante.fecha_antecedentes,
       this.aspirante.evaluacion_psicologica,
-      this.aspirante.comite_admision
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
     );
     this.router.navigate(["/"]);
   }
@@ -291,7 +397,7 @@ export class ProcesoInvestigativo implements OnInit {
   styleUrls: ['../documentos/documentos.component.css'],
 })
 
-export class Documentos implements OnInit {
+export class DocumentosComponent implements OnInit {
 
   constructor(public aspiranteService: AspiranteService, public route: ActivatedRoute, private router: Router) { }
 
@@ -379,6 +485,51 @@ export class Documentos implements OnInit {
       this.form.value.fecha_antecedentes = "";
     }
 
+    if (this.aspirante.curriculum_vitae == true && this.form.value.fecha_curriculum_vitae == "") {
+      let date = new Date();
+      this.form.value.fecha_curriculum_vitae = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.autobiografia == true && this.form.value.fecha_autobiografia == "") {
+      let date = new Date();
+      this.form.value.fecha_autobiografia = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.titulo == true && this.form.value.fecha_titulo == "") {
+      let date = new Date();
+      this.form.value.fecha_titulo = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.chequeo_medico == true && this.form.value.fecha_chequeo_medico == "") {
+      let date = new Date();
+      this.form.value.fecha_chequeo_medico = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.avales_cdr == true && this.form.value.fecha_avales_cdr == "") {
+      let date = new Date();
+      this.form.value.fecha_avales_cdr = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.avales_centro_trabajo == true && this.form.value.fecha_avales_centro_trabajo == "") {
+      let date = new Date();
+      this.form.value.fecha_avales_centro_trabajo = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.fotos == true && this.form.value.fecha_fotos == "") {
+      let date = new Date();
+      this.form.value.fecha_fotos = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.anexo1 == true && this.form.value.fecha_anexo1 == "") {
+      let date = new Date();
+      this.form.value.fecha_anexo1 = date.toISOString().split('T')[0];
+    }
+
+    if (this.aspirante.antecedentes == true && this.form.value.fecha_antecedentes == "") {
+      let date = new Date();
+      this.form.value.fecha_antecedentes = date.toISOString().split('T')[0];
+    }
+
     this.aspiranteService.updateCandidato(
       idAspirante,
       this.aspirante.nombre,
@@ -439,7 +590,348 @@ export class Documentos implements OnInit {
       this.aspirante.antecedentes,
       this.form.value.fecha_antecedentes,
       this.aspirante.evaluacion_psicologica,
-      this.aspirante.comite_admision
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
+    );
+    this.router.navigate(["/"]);
+  }
+}
+
+@Component({
+  selector: 'evaluacionpsicologica',
+  templateUrl: '../evaluacionpsicologica/evaluacionpsicologica.component.html',
+  styleUrls: ['../evaluacionpsicologica/evaluacionpsicologica.component.css'],
+})
+
+export class EvaluacionPsicologicaComponent implements OnInit {
+
+  constructor(public aspiranteService: AspiranteService, public route: ActivatedRoute, private router: Router) { }
+
+  aspirantes: Aspirante[] = [];
+  private aspiranteSub!: Subscription;
+
+  form!: FormGroup;
+  aspirante!: Aspirante;
+
+  getErrorMessage() {
+    return "Este campo no puede estar vacío";
+  }
+
+  ngOnInit() {
+    this.form = new FormGroup({
+      evaluacion_psicologica: new FormControl(null, { validators: [Validators.required] }),
+    });
+
+    this.aspiranteService.getAspirantes();
+    this.aspiranteSub = this.aspiranteService
+      .getAspirantesUpdateListener()
+      .subscribe((aspirantes: Aspirante[]) => {
+        this.aspirantes = aspirantes;
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+          for (let i = 0; i < this.aspirantes.length; i++) {
+            if (this.aspirantes[i].id == idAspirante) {
+              this.aspirante = this.aspirantes[i];
+            }
+          }
+        });
+      });
+  }
+
+  onEvaluacionPsicologica() {
+    this.aspiranteService.updateCandidato(
+      idAspirante,
+      this.aspirante.nombre,
+      this.aspirante.apellidos,
+      this.aspirante.alias,
+      this.aspirante.ci,
+      this.aspirante.edad,
+      this.aspirante.sexo,
+      this.aspirante.provincia,
+      this.aspirante.municipio,
+      this.aspirante.direccion,
+      this.aspirante.correo,
+      this.aspirante.telefono,
+      this.aspirante.raza,
+      this.aspirante.estatura,
+      this.aspirante.peso,
+      this.aspirante.estado_civil,
+      this.aspirante.hijos,
+      this.aspirante.licencia,
+      this.aspirante.categoria_licencia,
+      this.aspirante.militancia,
+      this.aspirante.nivel_escolaridad,
+      this.aspirante.titulo_graduado,
+      this.aspirante.experiencia_laboral,
+      this.aspirante.otros_estudios,
+      this.aspirante.trayectoria_laboral,
+      this.aspirante.situacion_laboral,
+      this.aspirante.centro_trabajo,
+      this.aspirante.organismo_trabajo,
+      this.aspirante.cargo_trabajo,
+      this.aspirante.categoria_trabajo,
+      this.aspirante.direccion_trabajo,
+      this.aspirante.telefono_trabajo,
+      this.aspirante.otros_oficios,
+      this.aspirante.estado,
+      this.aspirante.causa_eliminacion,
+      this.aspirante.causa_no_apto,
+      this.aspirante.preseleccion,
+      this.aspirante.fecha_inicio_proceso_investigativo,
+      this.aspirante.fecha_fin_proceso_investigativo,
+      this.aspirante.resultado_proceso_investigativo,
+      this.aspirante.curriculum_vitae,
+      this.aspirante.fecha_curriculum_vitae,
+      this.aspirante.autobiografia,
+      this.aspirante.fecha_autobiografia,
+      this.aspirante.titulo,
+      this.aspirante.fecha_titulo,
+      this.aspirante.chequeo_medico,
+      this.aspirante.fecha_chequeo_medico,
+      this.aspirante.avales_cdr,
+      this.aspirante.fecha_avales_cdr,
+      this.aspirante.avales_centro_trabajo,
+      this.aspirante.fecha_avales_centro_trabajo,
+      this.aspirante.fotos,
+      this.aspirante.fecha_fotos,
+      this.aspirante.anexo1,
+      this.aspirante.fecha_anexo1,
+      this.aspirante.antecedentes,
+      this.aspirante.fecha_antecedentes,
+      this.form.value.evaluacion_psicologica,
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
+    );
+    this.router.navigate(["/"]);
+  }
+}
+
+@Component({
+  selector: 'comiteadmision',
+  templateUrl: '../comiteadmision/comiteadmision.component.html',
+  styleUrls: ['../comiteadmision/comiteadmision.component.css'],
+})
+
+export class ComiteAdmisionComponent implements OnInit {
+
+  constructor(public aspiranteService: AspiranteService, public route: ActivatedRoute, private router: Router) { }
+
+  aspirantes: Aspirante[] = [];
+  private aspiranteSub!: Subscription;
+
+  form!: FormGroup;
+  aspirante!: Aspirante;
+
+  getErrorMessage() {
+    return "Este campo no puede estar vacío";
+  }
+
+  ngOnInit() {
+    this.form = new FormGroup({
+      comite_admision: new FormControl(null, { validators: [Validators.required] }),
+    });
+
+    this.aspiranteService.getAspirantes();
+    this.aspiranteSub = this.aspiranteService
+      .getAspirantesUpdateListener()
+      .subscribe((aspirantes: Aspirante[]) => {
+        this.aspirantes = aspirantes;
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+          for (let i = 0; i < this.aspirantes.length; i++) {
+            if (this.aspirantes[i].id == idAspirante) {
+              this.aspirante = this.aspirantes[i];
+            }
+          }
+        });
+      });
+  }
+
+  onComiteAdmision() {
+    this.aspiranteService.updateCandidato(
+      idAspirante,
+      this.aspirante.nombre,
+      this.aspirante.apellidos,
+      this.aspirante.alias,
+      this.aspirante.ci,
+      this.aspirante.edad,
+      this.aspirante.sexo,
+      this.aspirante.provincia,
+      this.aspirante.municipio,
+      this.aspirante.direccion,
+      this.aspirante.correo,
+      this.aspirante.telefono,
+      this.aspirante.raza,
+      this.aspirante.estatura,
+      this.aspirante.peso,
+      this.aspirante.estado_civil,
+      this.aspirante.hijos,
+      this.aspirante.licencia,
+      this.aspirante.categoria_licencia,
+      this.aspirante.militancia,
+      this.aspirante.nivel_escolaridad,
+      this.aspirante.titulo_graduado,
+      this.aspirante.experiencia_laboral,
+      this.aspirante.otros_estudios,
+      this.aspirante.trayectoria_laboral,
+      this.aspirante.situacion_laboral,
+      this.aspirante.centro_trabajo,
+      this.aspirante.organismo_trabajo,
+      this.aspirante.cargo_trabajo,
+      this.aspirante.categoria_trabajo,
+      this.aspirante.direccion_trabajo,
+      this.aspirante.telefono_trabajo,
+      this.aspirante.otros_oficios,
+      this.aspirante.estado,
+      this.aspirante.causa_eliminacion,
+      this.aspirante.causa_no_apto,
+      this.aspirante.preseleccion,
+      this.aspirante.fecha_inicio_proceso_investigativo,
+      this.aspirante.fecha_fin_proceso_investigativo,
+      this.aspirante.resultado_proceso_investigativo,
+      this.aspirante.curriculum_vitae,
+      this.aspirante.fecha_curriculum_vitae,
+      this.aspirante.autobiografia,
+      this.aspirante.fecha_autobiografia,
+      this.aspirante.titulo,
+      this.aspirante.fecha_titulo,
+      this.aspirante.chequeo_medico,
+      this.aspirante.fecha_chequeo_medico,
+      this.aspirante.avales_cdr,
+      this.aspirante.fecha_avales_cdr,
+      this.aspirante.avales_centro_trabajo,
+      this.aspirante.fecha_avales_centro_trabajo,
+      this.aspirante.fotos,
+      this.aspirante.fecha_fotos,
+      this.aspirante.anexo1,
+      this.aspirante.fecha_anexo1,
+      this.aspirante.antecedentes,
+      this.aspirante.fecha_antecedentes,
+      this.aspirante.evaluacion_psicologica,
+      this.form.value.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
+    );
+    this.router.navigate(["/"]);
+  }
+}
+
+@Component({
+  selector: 'candidato-noapto',
+  templateUrl: '../candidato-noapto/candidato-noapto.component.html',
+  styleUrls: ['../candidato-noapto/candidato-noapto.component.css'],
+})
+
+export class CandidatoNoAptoComponent implements OnInit {
+
+  constructor(public aspiranteService: AspiranteService, public route: ActivatedRoute, private router: Router) { }
+
+  aspirantes: Aspirante[] = [];
+  private aspiranteSub!: Subscription;
+
+  form!: FormGroup;
+  aspirante!: Aspirante;
+
+  getErrorMessage() {
+    return "Este campo no puede estar vacío";
+  }
+
+  ngOnInit() {
+    this.form = new FormGroup({
+      causa_no_apto: new FormControl(null, { validators: [Validators.required] }),
+    });
+
+    this.aspiranteService.getAspirantes();
+    this.aspiranteSub = this.aspiranteService
+      .getAspirantesUpdateListener()
+      .subscribe((aspirantes: Aspirante[]) => {
+        this.aspirantes = aspirantes;
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+          for (let i = 0; i < this.aspirantes.length; i++) {
+            if (this.aspirantes[i].id == idAspirante) {
+              this.aspirante = this.aspirantes[i];
+            }
+          }
+        });
+      });
+  }
+
+  onCandidatoNoApto() {
+    this.aspiranteService.updateCandidato(
+      idAspirante,
+      this.aspirante.nombre,
+      this.aspirante.apellidos,
+      this.aspirante.alias,
+      this.aspirante.ci,
+      this.aspirante.edad,
+      this.aspirante.sexo,
+      this.aspirante.provincia,
+      this.aspirante.municipio,
+      this.aspirante.direccion,
+      this.aspirante.correo,
+      this.aspirante.telefono,
+      this.aspirante.raza,
+      this.aspirante.estatura,
+      this.aspirante.peso,
+      this.aspirante.estado_civil,
+      this.aspirante.hijos,
+      this.aspirante.licencia,
+      this.aspirante.categoria_licencia,
+      this.aspirante.militancia,
+      this.aspirante.nivel_escolaridad,
+      this.aspirante.titulo_graduado,
+      this.aspirante.experiencia_laboral,
+      this.aspirante.otros_estudios,
+      this.aspirante.trayectoria_laboral,
+      this.aspirante.situacion_laboral,
+      this.aspirante.centro_trabajo,
+      this.aspirante.organismo_trabajo,
+      this.aspirante.cargo_trabajo,
+      this.aspirante.categoria_trabajo,
+      this.aspirante.direccion_trabajo,
+      this.aspirante.telefono_trabajo,
+      this.aspirante.otros_oficios,
+      "Candidato No Apto",
+      this.aspirante.causa_eliminacion,
+      this.form.value.causa_no_apto,
+      this.aspirante.preseleccion,
+      this.aspirante.fecha_inicio_proceso_investigativo,
+      this.aspirante.fecha_fin_proceso_investigativo,
+      this.aspirante.resultado_proceso_investigativo,
+      this.aspirante.curriculum_vitae,
+      this.aspirante.fecha_curriculum_vitae,
+      this.aspirante.autobiografia,
+      this.aspirante.fecha_autobiografia,
+      this.aspirante.titulo,
+      this.aspirante.fecha_titulo,
+      this.aspirante.chequeo_medico,
+      this.aspirante.fecha_chequeo_medico,
+      this.aspirante.avales_cdr,
+      this.aspirante.fecha_avales_cdr,
+      this.aspirante.avales_centro_trabajo,
+      this.aspirante.fecha_avales_centro_trabajo,
+      this.aspirante.fotos,
+      this.aspirante.fecha_fotos,
+      this.aspirante.anexo1,
+      this.aspirante.fecha_anexo1,
+      this.aspirante.antecedentes,
+      this.aspirante.fecha_antecedentes,
+      this.aspirante.evaluacion_psicologica,
+      this.aspirante.comite_admision,
+      this.aspirante.mixta,
+      this.aspirante.cargo_mixta,
+      this.aspirante.fecha_mixta,
+      this.aspirante.causa_devolucion,
+      this.aspirante.fecha_devolucion,
     );
     this.router.navigate(["/"]);
   }
