@@ -1,0 +1,7 @@
+<form [formGroup]="form" (submit)="onEvaluacionPsicologica()" >
+  <mat-form-field>
+    <textarea matInput required rows="5" [ngModel]="aspirante.evaluacion_psicologica" formControlName="evaluacion_psicologica" placeholder="Evaluación Psicológica del candidato según elementos psicológicos evaluados en el proceso selectivo"></textarea>
+    <mat-error *ngIf="form.get('evaluacion_psicologica')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" mat-dialog-close>Guardar</button>
+</form>

@@ -1,0 +1,7 @@
+<form [formGroup]="form" (submit)="onPreseleccion()" >
+  <mat-form-field>
+    <textarea matInput required rows="5" [ngModel]="aspirante.preseleccion" formControlName="preseleccion" placeholder="Breve reseña del primer contacto y entrevista inicial con el candidato"></textarea>
+    <mat-error *ngIf="form.get('preseleccion')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" mat-dialog-close>Guardar</button>
+</form>

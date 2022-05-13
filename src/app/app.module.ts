@@ -26,19 +26,34 @@ import { ListarAspiranteComponent, EliminarAspiranteComponent, AspiranteNoAptoCo
 import { ListarEliminadoComponent } from './aspirante/listar-eliminado/listar-eliminado.component';
 import { ListarNoAptoComponent } from './aspirante/listar-noapto/listar-noapto.component';
 
-import { ListarCandidatoComponent } from './candidato/listar-candidato/listar-candidato.component';
+import { DocumentosComponent, ListarCandidatoComponent, PreseleccionComponent, ProcesoInvestigativoComponent, EvaluacionPsicologicaComponent, ComiteAdmisionComponent, CandidatoNoAptoComponent } from './aspirante/listar-candidato/listar-candidato.component';
+import { EmplearMixtaComponent, ListarBolsaComponent } from './aspirante/listar-bolsa/listar-bolsa.component';
+import { ListarEmpleadosComponent, DevolverComponent } from './aspirante/listar-empleados/listar-empleados.component';
+import { EmplearMixtaDevueltosComponent, ListarDevueltosComponent } from './aspirante/listar-devueltos/listar-devueltos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    EliminarAspiranteComponent,
-    FichaAspiranteComponent,
     AspiranteNoAptoComponent,
+    CandidatoNoAptoComponent,
+    ComiteAdmisionComponent,
+    DevolverComponent,
+    DocumentosComponent,
+    EliminarAspiranteComponent,
+    EmplearMixtaComponent,
+    EmplearMixtaDevueltosComponent,
+    EvaluacionPsicologicaComponent,
+    FichaAspiranteComponent,
+    HeaderComponent,
     ListarAspiranteComponent,
+    ListarBolsaComponent,
+    ListarDevueltosComponent,
     ListarEliminadoComponent,
+    ListarEmpleadosComponent,
     ListarNoAptoComponent,
-    ListarCandidatoComponent
+    ListarCandidatoComponent,
+    PreseleccionComponent,
+    ProcesoInvestigativoComponent
   ],
   imports: [
     AppRoutingModule,

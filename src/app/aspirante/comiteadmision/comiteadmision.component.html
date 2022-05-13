@@ -1,0 +1,7 @@
+<form [formGroup]="form" (submit)="onComiteAdmision()" >
+  <mat-form-field>
+    <textarea matInput required rows="5" [ngModel]="aspirante.comite_admision" formControlName="comite_admision" placeholder="Elementos de interés discutidos en el Comité de Admisión"></textarea>
+    <mat-error *ngIf="form.get('comite_admision')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" mat-dialog-close>Guardar</button>
+</form>

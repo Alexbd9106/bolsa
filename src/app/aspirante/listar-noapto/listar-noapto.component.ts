@@ -20,7 +20,7 @@ export class ListarNoAptoComponent implements OnInit, OnDestroy {
   aspirantes: Aspirante[] = [];
   private aspiranteSub!: Subscription;
 
-  displayedColumns: string[] = ['nombre', 'ci', 'edad', 'sexo', 'direccion', 'estado', 'causa_no_apto'];
+  displayedColumns: string[] = ['nombre', 'ci', 'edad', 'sexo', 'estado', 'causa_no_apto'];
 
   ngOnInit() {
     this.aspiranteService.getAspirantes();

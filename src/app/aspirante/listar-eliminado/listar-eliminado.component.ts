@@ -20,7 +20,7 @@ export class ListarEliminadoComponent implements OnInit, OnDestroy {
   aspirantes: Aspirante[] = [];
   private aspiranteSub!: Subscription;
 
-  displayedColumns: string[] = ['nombre', 'ci', 'edad', 'sexo', 'direccion', 'estado', 'causa_eliminacion'];
+  displayedColumns: string[] = ['nombre', 'ci', 'edad', 'sexo', 'estado', 'causa_eliminacion'];
 
   ngOnInit() {
     this.aspiranteService.getAspirantes();

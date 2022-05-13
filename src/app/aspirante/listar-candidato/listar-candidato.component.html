@@ -1,0 +1,727 @@
+<table
+  mat-table
+  [dataSource]="aspirantes"
+  multiTemplateDataRows
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef>Nombre y Apellidos</th>
+    <td mat-cell *matCellDef="let aspirante">
+      {{ aspirante.nombre }} {{ aspirante.apellidos }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ci">
+    <th mat-header-cell *matHeaderCellDef>Carné de Identidad</th>
+    <td mat-cell *matCellDef="let aspirante">{{ aspirante.ci }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="edad">
+    <th mat-header-cell *matHeaderCellDef>Edad</th>
+    <td mat-cell *matCellDef="let aspirante">{{ aspirante.edad }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="sexo">
+    <th mat-header-cell *matHeaderCellDef>Sexo</th>
+    <td mat-cell *matCellDef="let aspirante">{{ aspirante.sexo }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estado">
+    <th mat-header-cell *matHeaderCellDef>Estado</th>
+    <td mat-cell *matCellDef="let aspirante">{{ aspirante.estado }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let aspirante">
+      <button
+        mat-button
+        color="warn"
+        (click)="openDialogPreSeleccion(aspirante.id)"
+        *ngIf="aspirante.preseleccion == ''"
+      >
+        Pre-Seleeción
+      </button>
+      <button
+        mat-button
+        color="primary"
+        (click)="openDialogPreSeleccion(aspirante.id)"
+        *ngIf="aspirante.preseleccion != ''"
+      >
+        Pre-Seleeción
+      </button>
+
+      <button
+        mat-button
+        color="primary"
+        (click)="openDialogProcesoInvestigativo(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          aspirante.fecha_inicio_proceso_investigativo != '' &&
+          aspirante.fecha_fin_proceso_investigativo != '' &&
+          aspirante.resultado_proceso_investigativo != ''
+        "
+      >
+        Proceso Investigativo
+      </button>
+      <button
+        mat-button
+        color="warn"
+        (click)="openDialogProcesoInvestigativo(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          (aspirante.fecha_inicio_proceso_investigativo == '' ||
+            aspirante.fecha_fin_proceso_investigativo == '' ||
+            aspirante.resultado_proceso_investigativo == '')
+        "
+      >
+        Proceso Investigativo
+      </button>
+      <button
+        mat-button
+        disabled
+        *ngIf="
+          aspirante.preseleccion == '' &&
+          aspirante.fecha_inicio_proceso_investigativo == '' &&
+          aspirante.fecha_fin_proceso_investigativo == '' &&
+          aspirante.resultado_proceso_investigativo == '' &&
+          aspirante.curriculum_vitae == false &&
+          aspirante.fecha_curriculum_vitae == '' &&
+          aspirante.autobiografia == false &&
+          aspirante.fecha_autobiografia == '' &&
+          aspirante.titulo == false &&
+          aspirante.fecha_titulo == '' &&
+          aspirante.chequeo_medico == false &&
+          aspirante.fecha_chequeo_medico == '' &&
+          aspirante.avales_cdr == false &&
+          aspirante.fecha_avales_cdr == '' &&
+          aspirante.avales_centro_trabajo == false &&
+          aspirante.fecha_avales_centro_trabajo == '' &&
+          aspirante.fotos == false &&
+          aspirante.fecha_fotos == '' &&
+          aspirante.anexo1 == false &&
+          aspirante.fecha_anexo1 == '' &&
+          aspirante.antecedentes == false &&
+          aspirante.fecha_antecedentes == '' &&
+          aspirante.evaluacion_psicologica == '' &&
+          aspirante.comite_admision == ''
+        "
+      >
+        Proceso Investigativo
+      </button>
+
+      <button
+        mat-button
+        color="primary"
+        (click)="openDialogDocumentos(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          aspirante.fecha_inicio_proceso_investigativo != '' &&
+          aspirante.fecha_fin_proceso_investigativo != '' &&
+          aspirante.resultado_proceso_investigativo != '' &&
+          aspirante.curriculum_vitae == true &&
+          aspirante.fecha_curriculum_vitae != '' &&
+          aspirante.autobiografia == true &&
+          aspirante.fecha_autobiografia != '' &&
+          aspirante.titulo == true &&
+          aspirante.fecha_titulo != '' &&
+          aspirante.chequeo_medico == true &&
+          aspirante.fecha_chequeo_medico != '' &&
+          aspirante.avales_cdr == true &&
+          aspirante.fecha_avales_cdr != '' &&
+          aspirante.avales_centro_trabajo == true &&
+          aspirante.fecha_avales_centro_trabajo != '' &&
+          aspirante.fotos == true &&
+          aspirante.fecha_fotos != '' &&
+          aspirante.anexo1 == true &&
+          aspirante.fecha_anexo1 != '' &&
+          aspirante.antecedentes == true &&
+          aspirante.fecha_antecedentes != ''
+        "
+      >
+        Entrega de Documentos
+      </button>
+      <button
+        mat-button
+        color="warn"
+        (click)="openDialogDocumentos(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          aspirante.fecha_inicio_proceso_investigativo != '' &&
+          aspirante.fecha_fin_proceso_investigativo != '' &&
+          aspirante.resultado_proceso_investigativo != '' &&
+          (aspirante.curriculum_vitae == false ||
+            aspirante.fecha_curriculum_vitae == '' ||
+            aspirante.autobiografia == false ||
+            aspirante.fecha_autobiografia == '' ||
+            aspirante.titulo == false ||
+            aspirante.fecha_titulo == '' ||
+            aspirante.chequeo_medico == false ||
+            aspirante.fecha_chequeo_medico == '' ||
+            aspirante.avales_cdr == false ||
+            aspirante.fecha_avales_cdr == '' ||
+            aspirante.avales_centro_trabajo == false ||
+            aspirante.fecha_avales_centro_trabajo == '' ||
+            aspirante.fotos == false ||
+            aspirante.fecha_fotos == '' ||
+            aspirante.anexo1 == false ||
+            aspirante.fecha_anexo1 == '' ||
+            aspirante.antecedentes == false ||
+            aspirante.fecha_antecedentes == '')
+        "
+      >
+        Entrega de Documentos
+      </button>
+      <button
+        mat-button
+        disabled
+        *ngIf="
+          (aspirante.fecha_inicio_proceso_investigativo == '' ||
+            aspirante.fecha_fin_proceso_investigativo == '' ||
+            aspirante.resultado_proceso_investigativo == '') &&
+          aspirante.curriculum_vitae == false &&
+          aspirante.fecha_curriculum_vitae == '' &&
+          aspirante.autobiografia == false &&
+          aspirante.fecha_autobiografia == '' &&
+          aspirante.titulo == false &&
+          aspirante.fecha_titulo == '' &&
+          aspirante.chequeo_medico == false &&
+          aspirante.fecha_chequeo_medico == '' &&
+          aspirante.avales_cdr == false &&
+          aspirante.fecha_avales_cdr == '' &&
+          aspirante.avales_centro_trabajo == false &&
+          aspirante.fecha_avales_centro_trabajo == '' &&
+          aspirante.fotos == false &&
+          aspirante.fecha_fotos == '' &&
+          aspirante.anexo1 == false &&
+          aspirante.fecha_anexo1 == '' &&
+          aspirante.antecedentes == false &&
+          aspirante.fecha_antecedentes == '' &&
+          aspirante.evaluacion_psicologica == '' &&
+          aspirante.comite_admision == ''
+        "
+      >
+        Entrega de Documentos
+      </button>
+
+      <button
+        mat-button
+        color="primary"
+        (click)="openDialogEvaluacionPsicologica(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          aspirante.fecha_inicio_proceso_investigativo != '' &&
+          aspirante.fecha_fin_proceso_investigativo != '' &&
+          aspirante.resultado_proceso_investigativo != '' &&
+          aspirante.curriculum_vitae == true &&
+          aspirante.fecha_curriculum_vitae != '' &&
+          aspirante.autobiografia == true &&
+          aspirante.fecha_autobiografia != '' &&
+          aspirante.titulo == true &&
+          aspirante.fecha_titulo != '' &&
+          aspirante.chequeo_medico == true &&
+          aspirante.fecha_chequeo_medico != '' &&
+          aspirante.avales_cdr == true &&
+          aspirante.fecha_avales_cdr != '' &&
+          aspirante.avales_centro_trabajo == true &&
+          aspirante.fecha_avales_centro_trabajo != '' &&
+          aspirante.fotos == true &&
+          aspirante.fecha_fotos != '' &&
+          aspirante.anexo1 == true &&
+          aspirante.fecha_anexo1 != '' &&
+          aspirante.antecedentes == true &&
+          aspirante.fecha_antecedentes != '' &&
+          aspirante.evaluacion_psicologica != ''
+        "
+      >
+        Informe de Evaluación Psicológica
+      </button>
+      <button
+        mat-button
+        color="warn"
+        (click)="openDialogEvaluacionPsicologica(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          aspirante.fecha_inicio_proceso_investigativo != '' &&
+          aspirante.fecha_fin_proceso_investigativo != '' &&
+          aspirante.resultado_proceso_investigativo != '' &&
+          aspirante.curriculum_vitae == true &&
+          aspirante.fecha_curriculum_vitae != '' &&
+          aspirante.autobiografia == true &&
+          aspirante.fecha_autobiografia != '' &&
+          aspirante.titulo == true &&
+          aspirante.fecha_titulo != '' &&
+          aspirante.chequeo_medico == true &&
+          aspirante.fecha_chequeo_medico != '' &&
+          aspirante.avales_cdr == true &&
+          aspirante.fecha_avales_cdr != '' &&
+          aspirante.avales_centro_trabajo == true &&
+          aspirante.fecha_avales_centro_trabajo != '' &&
+          aspirante.fotos == true &&
+          aspirante.fecha_fotos != '' &&
+          aspirante.anexo1 == true &&
+          aspirante.fecha_anexo1 != '' &&
+          aspirante.antecedentes == true &&
+          aspirante.fecha_antecedentes != '' &&
+          aspirante.evaluacion_psicologica == ''
+        "
+      >
+        Informe de Evaluación Psicológica
+      </button>
+      <button
+        mat-button
+        disabled
+        *ngIf="
+          (aspirante.curriculum_vitae == false ||
+            aspirante.fecha_curriculum_vitae == '' ||
+            aspirante.autobiografia == false ||
+            aspirante.fecha_autobiografia == '' ||
+            aspirante.titulo == false ||
+            aspirante.fecha_titulo == '' ||
+            aspirante.chequeo_medico == false ||
+            aspirante.fecha_chequeo_medico == '' ||
+            aspirante.avales_cdr == false ||
+            aspirante.fecha_avales_cdr == '' ||
+            aspirante.avales_centro_trabajo == false ||
+            aspirante.fecha_avales_centro_trabajo == '' ||
+            aspirante.fotos == false ||
+            aspirante.fecha_fotos == '' ||
+            aspirante.anexo1 == false ||
+            aspirante.fecha_anexo1 == '' ||
+            aspirante.antecedentes == false ||
+            aspirante.fecha_antecedentes == '') &&
+          aspirante.evaluacion_psicologica == '' &&
+          aspirante.comite_admision == ''
+        "
+      >
+        Informe de Evaluación Psicológica
+      </button>
+
+      <button
+        mat-button
+        color="primary"
+        (click)="openDialogComiteAdmision(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          aspirante.fecha_inicio_proceso_investigativo != '' &&
+          aspirante.fecha_fin_proceso_investigativo != '' &&
+          aspirante.resultado_proceso_investigativo != '' &&
+          aspirante.curriculum_vitae == true &&
+          aspirante.fecha_curriculum_vitae != '' &&
+          aspirante.autobiografia == true &&
+          aspirante.fecha_autobiografia != '' &&
+          aspirante.titulo == true &&
+          aspirante.fecha_titulo != '' &&
+          aspirante.chequeo_medico == true &&
+          aspirante.fecha_chequeo_medico != '' &&
+          aspirante.avales_cdr == true &&
+          aspirante.fecha_avales_cdr != '' &&
+          aspirante.avales_centro_trabajo == true &&
+          aspirante.fecha_avales_centro_trabajo != '' &&
+          aspirante.fotos == true &&
+          aspirante.fecha_fotos != '' &&
+          aspirante.anexo1 == true &&
+          aspirante.fecha_anexo1 != '' &&
+          aspirante.antecedentes == true &&
+          aspirante.fecha_antecedentes != '' &&
+          aspirante.evaluacion_psicologica != '' &&
+          aspirante.comite_admision != ''
+        "
+      >
+        Comité de Admisión
+      </button>
+      <button
+        mat-button
+        color="warn"
+        (click)="openDialogComiteAdmision(aspirante.id)"
+        *ngIf="
+          aspirante.preseleccion != '' &&
+          aspirante.fecha_inicio_proceso_investigativo != '' &&
+          aspirante.fecha_fin_proceso_investigativo != '' &&
+          aspirante.resultado_proceso_investigativo != '' &&
+          aspirante.curriculum_vitae == true &&
+          aspirante.fecha_curriculum_vitae != '' &&
+          aspirante.autobiografia == true &&
+          aspirante.fecha_autobiografia != '' &&
+          aspirante.titulo == true &&
+          aspirante.fecha_titulo != '' &&
+          aspirante.chequeo_medico == true &&
+          aspirante.fecha_chequeo_medico != '' &&
+          aspirante.avales_cdr == true &&
+          aspirante.fecha_avales_cdr != '' &&
+          aspirante.avales_centro_trabajo == true &&
+          aspirante.fecha_avales_centro_trabajo != '' &&
+          aspirante.fotos == true &&
+          aspirante.fecha_fotos != '' &&
+          aspirante.anexo1 == true &&
+          aspirante.fecha_anexo1 != '' &&
+          aspirante.antecedentes == true &&
+          aspirante.fecha_antecedentes != '' &&
+          aspirante.evaluacion_psicologica != '' &&
+          aspirante.comite_admision == ''
+        "
+      >
+        Comité de Admisión
+      </button>
+      <button
+        mat-button
+        disabled
+        *ngIf="
+          aspirante.evaluacion_psicologica == '' &&
+          aspirante.comite_admision == ''
+        "
+      >
+        Comité de Admisión
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td
+      mat-cell
+      *matCellDef="let aspirante"
+      [attr.colspan]="displayedColumns.length"
+    >
+      <div
+        class="aspirante-detail"
+        [@detailExpand]="
+          aspirante == expandedCandidato ? 'expanded' : 'collapsed'
+        "
+      >
+        <div
+          class="aspirante-description"
+          style="width: 100%"
+          *ngIf="aspirante.preseleccion == ''"
+        >
+          <h1>Aún no se ha comenzado el proceso con este aspirante</h1>
+        </div>
+        <div
+          class="aspirante-description"
+          style="width: 100%"
+          *ngIf="aspirante.preseleccion != ''"
+        >
+          <div>
+            <p><span>Preselección: </span>{{ aspirante.preseleccion }}</p>
+          </div>
+          <table>
+            <tr>
+              <td style="width: 10%">
+                <p><span>Proceso Investigativo:</span></p>
+              </td>
+              <td style="width: 90%">
+                <p style="padding-left: 40px">
+                  Fecha de Inicio:
+                  {{
+                    aspirante.fecha_inicio_proceso_investigativo
+                      | date: "dd/MM/yy"
+                  }}
+                </p>
+                <p style="padding-left: 40px">
+                  Fecha de Fin:
+                  {{
+                    aspirante.fecha_fin_proceso_investigativo | date: "dd/MM/yy"
+                  }}
+                </p>
+                <p style="padding-left: 40px">
+                  Resultado de la Investigación:
+                  {{ aspirante.resultado_proceso_investigativo }}
+                </p>
+              </td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <td style="width: 15%">
+                <p><span>Entrega de Documentos:</span></p>
+              </td>
+              <td style="width: 15%">
+                <p>Curriculum vitae:</p>
+                <p>Autobiografia:</p>
+                <p>Fotocopia certificada del título:</p>
+                <p>Chequeo médico Pre/Empleo:</p>
+                <p>Avales de la zona del CDR:</p>
+                <p>Avales del ultimo centro laboral:</p>
+                <p>Fotos de carné actuales:</p>
+                <p *ngIf="aspirante.sexo == 'Masculino'">Anexo 1:</p>
+                <p>Certificación de Antecedentes Penales:</p>
+              </td>
+              <td style="width: 10%">
+                <p
+                  *ngIf="aspirante.curriculum_vitae == true"
+                  style="color: green"
+                >
+                  Documento Entregado
+                </p>
+                <p
+                  *ngIf="aspirante.curriculum_vitae == false"
+                  style="color: red"
+                >
+                  Documento Pendiente
+                </p>
+                <p *ngIf="aspirante.autobiografia == true" style="color: green">
+                  Documento Entregado
+                </p>
+                <p *ngIf="aspirante.autobiografia == false" style="color: red">
+                  Documento Pendiente
+                </p>
+                <p *ngIf="aspirante.titulo == true" style="color: green">
+                  Documento Entregado
+                </p>
+                <p *ngIf="aspirante.titulo == false" style="color: red">
+                  Documento Pendiente
+                </p>
+                <p
+                  *ngIf="aspirante.chequeo_medico == true"
+                  style="color: green"
+                >
+                  Documento Entregado
+                </p>
+                <p *ngIf="aspirante.chequeo_medico == false" style="color: red">
+                  Documento Pendiente
+                </p>
+                <p *ngIf="aspirante.avales_cdr == true" style="color: green">
+                  Documento Entregado
+                </p>
+                <p *ngIf="aspirante.avales_cdr == false" style="color: red">
+                  Documento Pendiente
+                </p>
+                <p
+                  *ngIf="aspirante.avales_centro_trabajo == true"
+                  style="color: green"
+                >
+                  Documento Entregado
+                </p>
+                <p
+                  *ngIf="aspirante.avales_centro_trabajo == false"
+                  style="color: red"
+                >
+                  Documento Pendiente
+                </p>
+                <p *ngIf="aspirante.fotos == true" style="color: green">
+                  Documento Entregado
+                </p>
+                <p *ngIf="aspirante.fotos == false" style="color: red">
+                  Documento Pendiente
+                </p>
+                <p
+                  *ngIf="
+                    aspirante.sexo == 'Masculino' && aspirante.anexo1 == true
+                  "
+                  style="color: green"
+                >
+                  Documento Entregado
+                </p>
+                <p
+                  *ngIf="
+                    aspirante.sexo == 'Masculino' && aspirante.anexo1 == false
+                  "
+                  style="color: red"
+                >
+                  Documento Pendiente
+                </p>
+                <p *ngIf="aspirante.antecedentes == true" style="color: green">
+                  Documento Entregado
+                </p>
+                <p *ngIf="aspirante.antecedentes == false" style="color: red">
+                  Documento Pendiente
+                </p>
+              </td>
+              <td style="width: 10%">
+                <p *ngIf="aspirante.curriculum_vitae == true">
+                  Fecha de Entrega:
+                </p>
+                <p *ngIf="aspirante.curriculum_vitae == false">&nbsp;</p>
+                <p *ngIf="aspirante.autobiografia == true">Fecha de Entrega:</p>
+                <p *ngIf="aspirante.autobiografia == false">&nbsp;</p>
+                <p *ngIf="aspirante.titulo == true">Fecha de Entrega:</p>
+                <p *ngIf="aspirante.titulo == false">&nbsp;</p>
+                <p *ngIf="aspirante.chequeo_medico == true">
+                  Fecha de Entrega:
+                </p>
+                <p *ngIf="aspirante.chequeo_medico == false">&nbsp;</p>
+                <p *ngIf="aspirante.avales_cdr == true">Fecha de Entrega:</p>
+                <p *ngIf="aspirante.avales_cdr == false">&nbsp;</p>
+                <p *ngIf="aspirante.avales_centro_trabajo == true">
+                  Fecha de Entrega:
+                </p>
+                <p *ngIf="aspirante.avales_centro_trabajo == false">&nbsp;</p>
+                <p *ngIf="aspirante.fotos == true">Fecha de Entrega:</p>
+                <p *ngIf="aspirante.fotos == false">&nbsp;</p>
+                <p
+                  *ngIf="
+                    aspirante.sexo == 'Masculino' && aspirante.anexo1 == true
+                  "
+                >
+                  Fecha de Entrega:
+                </p>
+                <p
+                  *ngIf="
+                    aspirante.sexo == 'Masculino' && aspirante.anexo1 == false
+                  "
+                >
+                  &nbsp;
+                </p>
+                <p *ngIf="aspirante.antecedentes == true">Fecha de Entrega:</p>
+                <p *ngIf="aspirante.antecedentes == false">&nbsp;</p>
+              </td>
+              <td style="width: 50%">
+                <p *ngIf="aspirante.curriculum_vitae == true">
+                  {{ aspirante.fecha_curriculum_vitae }}
+                </p>
+                <p *ngIf="aspirante.curriculum_vitae == false">&nbsp;</p>
+                <p *ngIf="aspirante.autobiografia == true">
+                  {{ aspirante.fecha_autobiografia }}
+                </p>
+                <p *ngIf="aspirante.autobiografia == false">&nbsp;</p>
+                <p *ngIf="aspirante.titulo == true">
+                  {{ aspirante.fecha_titulo }}
+                </p>
+                <p *ngIf="aspirante.titulo == false">&nbsp;</p>
+                <p *ngIf="aspirante.chequeo_medico == true">
+                  {{ aspirante.fecha_chequeo_medico }}
+                </p>
+                <p *ngIf="aspirante.chequeo_medico == false">&nbsp;</p>
+                <p *ngIf="aspirante.avales_cdr == true">
+                  {{ aspirante.fecha_avales_cdr }}
+                </p>
+                <p *ngIf="aspirante.avales_cdr == false">&nbsp;</p>
+                <p *ngIf="aspirante.avales_centro_trabajo == true">
+                  {{ aspirante.fecha_avales_centro_trabajo }}
+                </p>
+                <p *ngIf="aspirante.avales_centro_trabajo == false">&nbsp;</p>
+                <p *ngIf="aspirante.fotos == true">
+                  {{ aspirante.fecha_fotos }}
+                </p>
+                <p *ngIf="aspirante.fotos == false">&nbsp;</p>
+                <p
+                  *ngIf="
+                    aspirante.sexo == 'Masculino' && aspirante.anexo1 == true
+                  "
+                >
+                  {{ aspirante.fecha_anexo1 }}
+                </p>
+                <p *ngIf="aspirante.sexo == 'Masculino' && aspirante.anexo1 == false">&nbsp;</p>
+                <p *ngIf="aspirante.antecedentes == true">
+                  {{ aspirante.fecha_antecedentes }}
+                </p>
+                <p *ngIf="aspirante.antecedentes == false">&nbsp;</p>
+              </td>
+            </tr>
+          </table>
+          <div>
+            <p>
+              <span>Informe de Evaluación Psicológica: </span>{{ aspirante.evaluacion_psicologica }}
+            </p>
+          </div>
+          <div>
+            <p>
+              <span>Comité de Admisión: </span>{{ aspirante.comite_admision }}
+            </p>
+          </div>
+          <div class="example-button-row">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="pasarBolsaDisponible(aspirante.id)"
+              *ngIf="
+                aspirante.preseleccion != '' &&
+                aspirante.fecha_inicio_proceso_investigativo != '' &&
+                aspirante.fecha_fin_proceso_investigativo != '' &&
+                aspirante.resultado_proceso_investigativo != '' &&
+                aspirante.curriculum_vitae == true &&
+                aspirante.fecha_curriculum_vitae != '' &&
+                aspirante.autobiografia == true &&
+                aspirante.fecha_autobiografia != '' &&
+                aspirante.titulo == true &&
+                aspirante.fecha_titulo != '' &&
+                aspirante.chequeo_medico == true &&
+                aspirante.fecha_chequeo_medico != '' &&
+                aspirante.avales_cdr == true &&
+                aspirante.fecha_avales_cdr != '' &&
+                aspirante.avales_centro_trabajo == true &&
+                aspirante.fecha_avales_centro_trabajo != '' &&
+                aspirante.fotos == true &&
+                aspirante.fecha_fotos != '' &&
+                aspirante.anexo1 == true &&
+                aspirante.fecha_anexo1 != '' &&
+                aspirante.antecedentes == true &&
+                aspirante.fecha_antecedentes != '' &&
+                aspirante.evaluacion_psicologica != '' &&
+                aspirante.comite_admision != ''
+              "
+            >
+              Pasar a Bolsa Disponible
+            </button>
+            <button
+              mat-raised-button
+              disabled
+              *ngIf="aspirante.comite_admision == ''"
+            >
+              Pasar a Bolsa Disponible
+            </button>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="openDialogNoApto(aspirante.id)"
+              *ngIf="
+                aspirante.preseleccion != '' &&
+                aspirante.fecha_inicio_proceso_investigativo != '' &&
+                aspirante.fecha_fin_proceso_investigativo != '' &&
+                aspirante.resultado_proceso_investigativo != ''
+              "
+            >
+              Pasar a No Apto
+            </button>
+            <button
+              mat-raised-button
+              disabled
+              *ngIf="
+                (aspirante.fecha_inicio_proceso_investigativo == '' ||
+                  aspirante.fecha_fin_proceso_investigativo == '' ||
+                  aspirante.resultado_proceso_investigativo == '') &&
+                aspirante.curriculum_vitae == false &&
+                aspirante.fecha_curriculum_vitae == '' &&
+                aspirante.autobiografia == false &&
+                aspirante.fecha_autobiografia == '' &&
+                aspirante.titulo == false &&
+                aspirante.fecha_titulo == '' &&
+                aspirante.chequeo_medico == false &&
+                aspirante.fecha_chequeo_medico == '' &&
+                aspirante.avales_cdr == false &&
+                aspirante.fecha_avales_cdr == '' &&
+                aspirante.avales_centro_trabajo == false &&
+                aspirante.fecha_avales_centro_trabajo == '' &&
+                aspirante.fotos == false &&
+                aspirante.fecha_fotos == '' &&
+                aspirante.anexo1 == false &&
+                aspirante.fecha_anexo1 == '' &&
+                aspirante.antecedentes == false &&
+                aspirante.fecha_antecedentes == '' &&
+                aspirante.evaluacion_psicologica == '' &&
+                aspirante.comite_admision == ''
+              "
+            >
+              Pasar a No Apto
+            </button>
+          </div>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let aspirante; columns: displayedColumns"
+    class="aspirante-row"
+    [class.example-expanded-row]="expandedCandidato === aspirante"
+    (click)="
+      expandedCandidato = expandedCandidato === aspirante ? null : aspirante
+    "
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: ['expandedDetail']"
+    class="aspirante-detail-row"
+  ></tr>
+</table>
