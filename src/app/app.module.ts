@@ -26,11 +26,12 @@ import { ListarAspiranteComponent, EliminarAspiranteComponent, AspiranteNoAptoCo
 import { ListarEliminadoComponent } from './aspirante/listar-eliminado/listar-eliminado.component';
 import { ListarNoAptoComponent } from './aspirante/listar-noapto/listar-noapto.component';
 
-import { ListarCandidatoComponent } from './candidato/listar-candidato/listar-candidato.component';
+import { Documentos, ListarCandidatoComponent, PreseleccionComponent, ProcesoInvestigativo } from './aspirante/listar-candidato/listar-candidato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    Documentos,
     HeaderComponent,
     EliminarAspiranteComponent,
     FichaAspiranteComponent,
@@ -38,7 +39,9 @@ import { ListarCandidatoComponent } from './candidato/listar-candidato/listar-ca
     ListarAspiranteComponent,
     ListarEliminadoComponent,
     ListarNoAptoComponent,
-    ListarCandidatoComponent
+    ListarCandidatoComponent,
+    PreseleccionComponent,
+    ProcesoInvestigativo
   ],
   imports: [
     AppRoutingModule,

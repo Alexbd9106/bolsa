@@ -1,0 +1,13 @@
+<form [formGroup]="form" (submit)="onProcesoInvestigativo()">
+  <mat-form-field>
+    <input matInput required type="date" [ngModel]="aspirante.fecha_inicio_proceso_investigativo" formControlName="fecha_inicio_proceso_investigativo" placeholder="Inicio del Proceso Investigativo"/>
+    <mat-error *ngIf="form.get('fecha_inicio_proceso_investigativo')">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="date" [ngModel]="aspirante.fecha_fin_proceso_investigativo" formControlName="fecha_fin_proceso_investigativo" placeholder="Fin del Proceso Investigativo"/>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="5" [ngModel]="aspirante.resultado_proceso_investigativo" formControlName="resultado_proceso_investigativo" placeholder="Resultado del Proceso Investigativo"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" mat-dialog-close>Guardar</button>
+</form>

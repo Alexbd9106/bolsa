@@ -1,0 +1,112 @@
+<form [formGroup]="form" (submit)="onDocumentos()">
+  <table>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.curriculum_vitae" [ngModelOptions]="{standalone: true}">Curriculum Vitae</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.curriculum_vitae">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_curriculum_vitae" formControlName="fecha_curriculum_vitae" placeholder="Fecha de Entrega Curriculum Vitae"/>
+          <mat-error *ngIf="form.get('fecha_curriculum_vitae')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.autobiografia" [ngModelOptions]="{standalone: true}">Autobiografía</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.autobiografia">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_autobiografia" formControlName="fecha_autobiografia" placeholder="Fecha de Entrega Autobiografía"/>
+          <mat-error *ngIf="form.get('fecha_autobiografia')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.titulo" [ngModelOptions]="{standalone: true}">Título de Graduado</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.titulo">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_titulo" formControlName="fecha_titulo" placeholder="Fecha de Entrega Título de Graduado"/>
+          <mat-error *ngIf="form.get('fecha_titulo')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.chequeo_medico" [ngModelOptions]="{standalone: true}">Chequeo Médico</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.chequeo_medico">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_chequeo_medico" formControlName="fecha_chequeo_medico" placeholder="Fecha de Entrega Chequeo Médico"/>
+          <mat-error *ngIf="form.get('fecha_chequeo_medico')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.avales_cdr" [ngModelOptions]="{standalone: true}">Avales del CDR</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.avales_cdr">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_avales_cdr" formControlName="fecha_avales_cdr" placeholder="Fecha de Entrega Avales del CDR"/>
+          <mat-error *ngIf="form.get('fecha_avales_cdr')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.avales_centro_trabajo" [ngModelOptions]="{standalone: true}">Avales del Centro Laboral</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.avales_centro_trabajo">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_avales_centro_trabajo" formControlName="fecha_avales_centro_trabajo" placeholder="Fecha de Entrega Avales del Centro Laboral"/>
+          <mat-error *ngIf="form.get('fecha_avales_centro_trabajo')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.fotos" [ngModelOptions]="{standalone: true}">Fotos</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.fotos">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_fotos" formControlName="fecha_fotos" placeholder="Fecha de Entrega Fotos"/>
+          <mat-error *ngIf="form.get('fecha_fotos')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br *ngIf="aspirante.sexo == 'Masculino'">
+    <tr *ngIf="aspirante.sexo == 'Masculino'">
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.anexo1" [ngModelOptions]="{standalone: true}">Anexo 1</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.anexo1">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_anexo1" formControlName="fecha_anexo1" placeholder="Fecha de Entrega Anexo 1"/>
+          <mat-error *ngIf="form.get('fecha_anexo1')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <mat-checkbox color="primary" [(ngModel)]="aspirante.antecedentes" [ngModelOptions]="{standalone: true}">Antecedentes Penales</mat-checkbox>
+      </td>
+      <td>
+        <mat-form-field *ngIf="aspirante.antecedentes">
+          <input matInput required type="date" [ngModel]="aspirante.fecha_antecedentes" formControlName="fecha_antecedentes" placeholder="Fecha de Entrega Antecedentes Penales"/>
+          <mat-error *ngIf="form.get('fecha_antecedentes')">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <button mat-raised-button color="primary" type="submit" mat-dialog-close>Guardar</button>
+</form>
