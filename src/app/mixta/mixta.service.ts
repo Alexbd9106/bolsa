@@ -13,7 +13,7 @@ export class MixtaService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  servidor: string = "http://localhost:3000"
+  servidor: string = "http://192.168.1.48:3000"
 
   getMixtas() {
     this.http.get<{mensaje: string, mixtas: any}>(this.servidor + "/mixtas")

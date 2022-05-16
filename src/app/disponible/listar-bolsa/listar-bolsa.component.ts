@@ -3,20 +3,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Aspirante } from '../aspirante.model';
-import { AspiranteService } from '../aspirante.service';
+import { Aspirante } from '../../aspirante/aspirante.model';
+import { AspiranteService } from '../../aspirante/aspirante.service';
 import { MixtaService } from '../../mixta/mixta.service';
 import { Mixta } from '../../mixta/mixta.model';
 
 export let idAspirante: any;
 
 @Component({
-  selector: 'app-listar-devueltos',
-  templateUrl: './listar-devueltos.component.html',
-  styleUrls: ['./listar-devueltos.component.css']
+  selector: 'app-listar-bolsa',
+  templateUrl: './listar-bolsa.component.html',
+  styleUrls: ['./listar-bolsa.component.css']
 })
 
-export class ListarDevueltosComponent implements OnInit, OnDestroy {
+export class ListarBolsaComponent implements OnInit, OnDestroy {
 
   constructor(
     public aspiranteService: AspiranteService,
@@ -37,7 +37,7 @@ export class ListarDevueltosComponent implements OnInit, OnDestroy {
       .subscribe((aspirantes: Aspirante[]) => {
         let aux: Aspirante[] = [];
         for (let i = 0; i < aspirantes.length; i++) {
-          if (aspirantes[i].estado == "Candidato Disponible en Bolsa (Devuelto)") {
+          if (aspirantes[i].estado == "Candidato Disponible en Bolsa") {
             aux.push(aspirantes[i]);
           }
         }
@@ -51,7 +51,7 @@ export class ListarDevueltosComponent implements OnInit, OnDestroy {
 
   openDialogEmplearMixta(id: any) {
     idAspirante = id;
-    const dialogRef = this.dialog.open(EmplearMixtaDevueltosComponent);
+    const dialogRef = this.dialog.open(EmplearMixtaComponent);
   }
 
 }
@@ -62,7 +62,7 @@ export class ListarDevueltosComponent implements OnInit, OnDestroy {
   styleUrls: ['../emplearmixta/emplearmixta.component.css'],
 })
 
-export class EmplearMixtaDevueltosComponent implements OnInit {
+export class EmplearMixtaComponent implements OnInit {
 
   constructor(public aspiranteService: AspiranteService, public mixtaService: MixtaService, public route: ActivatedRoute, private router: Router) { }
 

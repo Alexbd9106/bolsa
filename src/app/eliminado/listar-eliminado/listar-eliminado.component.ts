@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Aspirante } from '../aspirante.model';
-import { AspiranteService } from '../aspirante.service';
+import { Aspirante } from '../../aspirante/aspirante.model';
+import { AspiranteService } from '../../aspirante/aspirante.service';
 
 @Component({
-  selector: 'app-listar-noapto',
-  templateUrl: './listar-noapto.component.html',
-  styleUrls: ['./listar-noapto.component.css']
+  selector: 'app-listar-eliminado',
+  templateUrl: './listar-eliminado.component.html',
+  styleUrls: ['./listar-eliminado.component.css']
 })
 
-export class ListarNoAptoComponent implements OnInit, OnDestroy {
+export class ListarEliminadoComponent implements OnInit, OnDestroy {
 
   constructor(
     public aspiranteService: AspiranteService,
@@ -20,7 +20,7 @@ export class ListarNoAptoComponent implements OnInit, OnDestroy {
   aspirantes: Aspirante[] = [];
   private aspiranteSub!: Subscription;
 
-  displayedColumns: string[] = ['nombre', 'ci', 'edad', 'sexo', 'estado', 'causa_no_apto'];
+  displayedColumns: string[] = ['nombre', 'ci', 'edad', 'sexo', 'estado', 'causa_eliminacion'];
 
   ngOnInit() {
     this.aspiranteService.getAspirantes();
@@ -29,7 +29,7 @@ export class ListarNoAptoComponent implements OnInit, OnDestroy {
       .subscribe((aspirantes: Aspirante[]) => {
         let aux: Aspirante[] = [];
         for (let i = 0; i < aspirantes.length; i++) {
-          if (aspirantes[i].estado == "Candidato No Apto") {
+          if (aspirantes[i].estado == "Candidato Eliminado") {
             aux.push(aspirantes[i]);
           }
         }

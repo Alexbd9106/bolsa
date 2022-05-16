@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Aspirante } from '../aspirante.model';
-import { AspiranteService } from '../aspirante.service';
+import { Aspirante } from '../../aspirante/aspirante.model';
+import { AspiranteService } from '../../aspirante/aspirante.service';
 import { MixtaService } from '../../mixta/mixta.service';
 import { Mixta } from '../../mixta/mixta.model';
 

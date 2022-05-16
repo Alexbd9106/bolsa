@@ -3,12 +3,12 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { ListarAspiranteComponent } from "./aspirante/listar-aspirante/listar-aspirante.component";
 import { FichaAspiranteComponent } from './aspirante/ficha-aspirante/ficha-aspirante.component';
-import { ListarCandidatoComponent } from './aspirante/listar-candidato/listar-candidato.component';
-import { ListarNoAptoComponent } from "./aspirante/listar-noapto/listar-noapto.component";
-import { ListarEliminadoComponent } from "./aspirante/listar-eliminado/listar-eliminado.component";
-import { ListarBolsaComponent } from './aspirante/listar-bolsa/listar-bolsa.component';
-import { ListarEmpleadosComponent } from './aspirante/listar-empleados/listar-empleados.component';
-import { ListarDevueltosComponent } from './aspirante/listar-devueltos/listar-devueltos.component';
+import { ListarCandidatoComponent } from './candidato/listar-candidato/listar-candidato.component';
+import { ListarNoAptoComponent } from "./no-apto/listar-noapto/listar-noapto.component";
+import { ListarEliminadoComponent } from "./eliminado/listar-eliminado/listar-eliminado.component";
+import { ListarBolsaComponent } from './disponible/listar-bolsa/listar-bolsa.component';
+import { ListarEmpleadosComponent } from './empleado/listar-empleados/listar-empleados.component';
+import { ListarDevueltosComponent } from './disponible/listar-devueltos/listar-devueltos.component';
 
 const rutas: Routes = [
   { path: '', component: ListarAspiranteComponent },

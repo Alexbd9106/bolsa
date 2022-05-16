@@ -11,7 +11,7 @@ export class AspiranteService {
   private aspirantes: Aspirante[] = [];
   private aspirantesUpdated = new Subject<Aspirante[]>();
 
-  private servidor: string = 'http://localhost:3000';
+  private servidor: string = 'http://192.168.1.48:3000';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -32,7 +32,7 @@ export class AspiranteService {
             direccion: aspirante.direccion,
             correo: aspirante.correo,
             telefono: aspirante.telefono,
-            color_piel: aspirante.color_piel,
+            raza: aspirante.raza,
             estatura: aspirante.estatura,
             peso: aspirante.peso,
             estado_civil: aspirante.estado_civil,
